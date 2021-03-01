@@ -1,0 +1,35 @@
+form {
+    border: 1px solid #545454;
+    border-radius: 3px;
+    padding: 40px;
+}
+
+input {
+    padding: 5px 20px;
+    width: 100%;
+    line-height: 16px;
+    margin: 10px 0;
+}
+
+#results {
+    background-color: #54545462;
+    text-align: center;
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+    // align-items: center;
+    justify-content: space-between;
+
+}
+
+.results-container {
+    background-color: bisque;
+    padding-top: 10px;
+}
+
+.feedback {
+    text-align: center;
+    color: green;
+    padding-top: 10px;
+    font-size: large;
+}
