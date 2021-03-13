@@ -31,6 +31,11 @@ const postMC = async (url = '', data = {}) => {
 }
 
 const updateUI = (dt) => {
+    const formText = document.getElementById('link').value;
+    const kjkj = document.getElementById('sub_link');
+    kjkj.style.display = 'block';
+    kjkj.setAttribute('href', `${formText}`);
+    kjkj.textContent = formText;
     feedback.textContent = "";
     document.getElementById('results').style.display = 'flex';
     document.getElementById('polarity').innerText = polarity(dt.score_tag)
