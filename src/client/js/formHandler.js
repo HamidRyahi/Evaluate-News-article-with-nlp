@@ -1,51 +1,67 @@
+const feedback = document.querySelector('.feedback');
+
 function handleSubmit(event) {
     event.preventDefault()
-    let formText = document.getElementById('link').value;
-    let feedback = document.querySelector('.feedback');
+    const formText = document.getElementById('link').value;
     if (Client.validateUrl(formText)) {
-        // console.log("Successful link is submitted, Please wait for the results!");
         feedback.textContent = "Successful link is submitted, please wait for the results!";
-        fetch('http://localhost:8081/article', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/JSON"
-            },
-            body: JSON.stringify({articleUrl: formText})
-        })
-        .then(res => res.json())
-        .then(function(res) {
-            
-            console.log("Response", res);
-            document.getElementById('polarity').innerText = "Polarity: " + polarity(res.score_tag)
-            document.getElementById('agreement').innerText = "Agreement: " + res.agreement
-            document.getElementById('subjectivity').innerText = "Subjectivity: " + res.subjectivity
-            document.getElementById('confidence').innerText = "Confidence: " + res.confidence + "%"
-            document.getElementById('irony').innerText = "Irony: " + res.irony
-            feedback.textContent = "";
-        })
+        postMC('http://localhost:8081/article', { articleUrl: formText })
     }
 }
 
-function polarity(scoreTag) {
-    if (scoreTag === "P") {
-        scoreTag = "POSITIVE"
-        return scoreTag;
-    } else if (scoreTag === "P+") {
-        scoreTag = "STRONG POSITIVE"
-        return scoreTag;
-    } else if (scoreTag === "NEU") {
-        scoreTag = "NEUTRAL"
-        return scoreTag;
-    } else if (scoreTag === "N") {
-        scoreTag = "NEGATIVE"
-        return scoreTag;
-    } else if (scoreTag === "N+") {
-        scoreTag = "STRONG NEGATIVE"
-        return scoreTag;
-    } else if (scoreTag === "NONE") {
-        scoreTag = "WITHOUT SENTIMENT"
-        return scoreTag;
+const postMC = async (url = '', data = {}) => {
+    const response = await fetch(url, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    try {
+        const data = await response.json();
+        console.log(data);
+        updateUI(data)
+        return data;
+    } catch (error) {
+        console.log("error", error);
+        // appropriately handle the error
     }
 }
-export { handleSubmit }
-export { polarity }
+
+const updateUI = (dt) => {
+    feedback.textContent = "";
+    document.getElementById('results').style.display = 'flex';
+    document.getElementById('polarity').innerText = polarity(dt.score_tag)
+    document.getElementById('agreement').innerText = dt.agreement
+    document.getElementById('subjectivity').innerText = dt.subjectivity
+    document.getElementById('confidence').innerText = dt.confidence + "%"
+    document.getElementById('irony').innerText = dt.irony
+}
+
+function polarity(scoreTag) {
+    switch (scoreTag) {
+        case "P":
+            scoreTag = "POSITIVE";
+            break;
+        case "P+":
+            scoreTag = "STRONG POSITIVE";
+            break;
+        case "NEU":
+            scoreTag = "NEUTRAL";
+            break;
+        case "N":
+            scoreTag = "NEGATIVE";
+            break;
+        case "N+":
+            scoreTag = "STRONG NEGATIVE";
+            break;
+        case "NONE":
+            scoreTag = "WITHOUT SENTIMENT";
+            break;
+    }
+    return scoreTag;
+}
+
+export { handleSubmit, polarity }

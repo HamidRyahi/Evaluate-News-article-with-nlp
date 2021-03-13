@@ -9,5 +9,4 @@ function validateUrl(url) {
     }
 }
 
-
 export { validateUrl }
