@@ -1,6 +1,18 @@
-.form {
-    border: 1px solid black;
-    width: 50%;
-    padding: 25px;
-    background-color: #00adb5;
+form {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+input {
+  padding: 5px 20px;
+  width: 80%;
+  line-height: 16px;
+  margin: 10px 0;
+}
+#button {
+  width: fit-content;
+}
+#name {
+  text-align: center;
 }
