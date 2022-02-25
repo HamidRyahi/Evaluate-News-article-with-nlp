@@ -1,0 +1,40 @@
+.results-section {
+  display: none;
+}
+#results {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 30px;
+}
+.results-section {
+  text-align: center;
+}
+#results p {
+  margin-top: 30px;
+}
+h1 {
+  font-size: x-large;
+}
+@media (max-width: 575px) {
+  body {
+    background-color: aqua;
+  }
+  #results p {
+    display: inline;
+  }
+  #results {
+    flex-direction: column;
+    align-items: center;
+  }
+  .results-part {
+    margin-top: 30px;
+  }
+}
+#link-section {
+  display: none;
+  text-align: center;
+}
+#form {
+  margin-top: 100px;
+}
