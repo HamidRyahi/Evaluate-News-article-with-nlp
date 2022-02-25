@@ -3,55 +3,52 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ENA with NLP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <title>Test</title>
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h1 class="">
-                Evaluate a News Article with NLP
-            </h1>
-        </header>
-        <main>
-            <section class="form">
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="link" type="url" name="input" value="" placeholder="Enter link here"><br><br>
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
-                        onsubmit="return Client.handleSubmit(event)">
-                </form><br>
-                <div class="feedback">
 
-                </div>
-                <div class="link_area">
-                    <a id="sub_link" target="_blank">test</a>
-                </div>
-            </section>
+    <header>
+        <h1>Evaluate a News Article with NLP</h1>
+    </header>
 
-            <section class="results-container">
-                <strong>Form Results:</strong>
-                <div id="results">
-                    <div class="result">Polarity: <br><br><span id="polarity"></span></div>
-                    <div class="result">Agreement: <br><br><span id="agreement"></span></div>
-                    <div class="result">Subjectivity: <br><br><span id="subjectivity"></span></div>
-                    <div class="result">Confidence: <br><br><span id="confidence"></span></div>
-                    <div class="result">Irony: <br><br><span id="irony"></span></div>
+    <main>
+        <section>
+            <form id="form" onsubmit="return Client.handleSubmit(event)">
+                <input id="name" type="text" name="input" value="" onblur="return Client.onBlur()" placeholder="Name">
+                <input id="button" type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
+                    onsubmit="return Client.handleSubmit(event)">
+            </form>
+        </section>
+        <section id="link-section">
+            <p>Submitted link:</p><br>
+            <a id="link" href="" target="_blank"></a>
+        </section>
+        <section class="results-section">
+            <strong>Form Results:</strong>
+            <div id="results">
+                <div class="results-part">Polarity: <p id="score_tag"></p>
                 </div>
-            </section>
-        </main>
-        <footer>
-            <p>This is a footer</p>
-        </footer>
-    </div>
-    <script>
-        // Check that service workers are supported
-        if ('serviceWorker' in navigator) {
-            // Use the window load event to keep the page load performant
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js');
-            });
-        }
-    </script>
+                <div class="results-part">Agreement: <p id="agreement"></p>
+                </div>
+                <div class="results-part">Subjectivity: <p id="subjectivity"></p>
+                </div>
+                <div class="results-part">Confidence: <p id="confidence"></p>
+                </div>
+                <div class="results-part">Irony: <p id="irony"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>This is a footer</p>
+    </footer>
 
 </body>
 
