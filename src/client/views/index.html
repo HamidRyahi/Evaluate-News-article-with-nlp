@@ -14,14 +14,14 @@
 <body>
 
     <header>
-        <h1>Evaluate a News Article with NLP</h1>
+        <h1 id="title">Evaluate a News Article with NLP</h1>
     </header>
 
     <main>
         <section>
             <form id="form" onsubmit="return Client.handleSubmit(event)">
-                <input id="name" type="text" name="input" value="" onblur="return Client.onBlur()" placeholder="Name">
-                <input id="button" type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
+                <input id="name" type="text" name="input" value="" onblur="return Client.onBlur()" placeholder="Enter URL here...">
+                <input id="button" type="submit" name="" value="submit url" onclick="return Client.handleSubmit(event)"
                     onsubmit="return Client.handleSubmit(event)">
             </form>
         </section>

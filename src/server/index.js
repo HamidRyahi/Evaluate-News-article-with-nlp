@@ -34,7 +34,7 @@ app.listen(port, function () {
 let projectData = {};
 app.post('/article', async (req, res) => {
     const articleUrl = req.body.articleUrl;
-    let url = `${baseUrl}${API_KEY}${articleUrl}`;
+    let url = `${baseUrl}${API_KEY}&url=${articleUrl}`;
     const response = await fetch(url, {
         method: "POST",
         headers: {
