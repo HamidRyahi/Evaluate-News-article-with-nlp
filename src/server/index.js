@@ -1,21 +1,29 @@
 // import fetch from "node-fetch";
 const fetch = require('node-fetch');
+
 // Require hidden api key
 const dotenv = require("dotenv");
 dotenv.config();
+
 var path = require('path');
+
 const mockAPIResponse = require('./mockAPI.js');
+
 // Express to run server and routes
 const express = require('express');
+
 //Meaningcloud credentials for API
 const baseUrl = "https://api.meaningcloud.com/sentiment-2.1?key=";
 const API_KEY = process.env.API_KEY;
+
 // Start up an instance of app
 const app = express();
+
 //Middleware
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 //Origin allowance
 const cors = require("cors");
 app.use(cors());
@@ -25,7 +33,9 @@ app.use(express.static('dist'));
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html');
 })
+
 const port = 8081;
+
 // designates what port the app will listen to for incoming requests
 app.listen(port, function () {
     console.log(`app listening on port ${port}!`);
